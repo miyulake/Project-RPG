@@ -1,0 +1,89 @@
+:root {
+    /* Text */
+    --text-shadow-base: 2px 2px 0px rgba(0, 0, 0, 1);
+    --font-size-base: 12px;
+    --font-size-header: 14px;
+    /* Size */
+    --height-button: 25px;
+    /* Spacing */
+    --spacing-bottom: 8px;
+}
+
+.foldout-box {
+    background-color: rgba(50, 50, 50, 1);
+    border-width: 1px;
+    border-color: gray;
+    border-radius: 4px;
+    padding: 8px;
+    margin-bottom: var(--spacing-bottom);
+}
+
+.foldout-box .unity-toggle {
+    text-shadow: var(--text-shadow-base);
+    font-size: var(--font-size-header);
+    -unity-font-style: bold;
+    background-color: rgba(50, 50, 50, 1);
+    border-radius: 4px;
+    padding: 4px;
+    transition: all 0.1s ease
+}
+.foldout-box .unity-toggle:hover { 
+    background-color: rgba(70, 70, 70, 0.9); 
+    scale: 1.02;
+}
+
+.foldout-box .unity-foldout__content {
+    background-color: rgba(45, 45, 45, 1);
+    border-radius: 4px;
+    margin: 4px;
+    padding: 8px;
+    padding-bottom: 0;
+}
+
+.button {
+    cursor: link;
+    font-size: var(--font-size-base);
+    -unity-font-style: normal;
+    -unity-text-align: middle-center;
+    height: var(--height-button);
+    margin-bottom: var(--spacing-bottom);
+}
+.button:disabled{
+    cursor: not-allowed;
+}
+
+.secret-button {
+    color: indianred;
+    text-shadow: var(--text-shadow-base);
+    font-size: 16px;
+    background-color: rgba(0, 0, 0, 0);
+    width: auto;
+    height: auto;
+    align-self: center;
+    flex-grow: 0;
+    flex-shrink: 0;
+    border-width: 0;
+    padding: 0;
+    margin-bottom: var(--spacing-bottom);
+}
+
+.label {
+    font-size: var(--font-size-base);
+    opacity: 0.6;
+    -unity-text-align: middle-center;
+    margin-bottom: var(--spacing-bottom);
+}
+
+.object-field{
+    margin-bottom: var(--spacing-bottom);
+}
+
+.vector-3-field{
+    margin-bottom: var(--spacing-bottom);
+}
+
+.copyright {
+    font-size: 10px;
+    -unity-text-align: middle-left;
+    margin-bottom: var(--spacing-bottom);
+}
