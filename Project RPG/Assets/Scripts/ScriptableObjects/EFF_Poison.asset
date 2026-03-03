@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   resourceTarget: 0
   effectName: Poison
+  effectColor: <color=blue>
   duration: 0
   baseAmountPerTick: -10
   intervalSeconds: 3

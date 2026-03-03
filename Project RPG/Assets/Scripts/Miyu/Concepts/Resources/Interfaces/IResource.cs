@@ -14,7 +14,7 @@ namespace Miyu.Concepts.Resources
         event Action Emptied;
         event Action Filled;
 
-        void Modify(int amount);
-        void Set(int amount);
+        void ModifyCurrent(int amount);
+        void SetCurrent(int amount);
     }
 }

@@ -24,11 +24,11 @@ namespace Miyu.Concepts.Resources
 
             _IntervalTimer.OnCompleted += () =>
             {
-                _Resource.Modify(_Definition.baseAmountPerTick);
+                _Resource.ModifyCurrent(_Definition.baseAmountPerTick);
                 _IntervalTimer.Reset();
             };
 
-            if (definition.tickImmediately) _Resource.Modify(_Definition.baseAmountPerTick);
+            if (definition.tickImmediately) _Resource.ModifyCurrent(_Definition.baseAmountPerTick);
         }
 
         public void Tick(float deltaTime)

@@ -864,7 +864,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_MoveSpeed: 10
-  m_LookSpeed: 2
+  m_LookSpeed: 3
   m_SpeedMultiplier: 2
 --- !u!1 &384724276
 GameObject:
@@ -2065,22 +2065,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2427247914080479001, guid: 9af80e45ff224e844b95ad2262ba5f15,
+        type: 3}
+      propertyPath: m_Effects.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2427247914080479001, guid: 9af80e45ff224e844b95ad2262ba5f15,
+        type: 3}
+      propertyPath: m_InitialEffects.Array.size
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5312063128084975092, guid: 9af80e45ff224e844b95ad2262ba5f15,
         type: 3}
       propertyPath: m_Name
       value: Test Entity (1)
       objectReference: {fileID: 0}
-    - target: {fileID: 6134977511470959958, guid: 9af80e45ff224e844b95ad2262ba5f15,
-        type: 3}
-      propertyPath: m_Effects.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6134977511470959958, guid: 9af80e45ff224e844b95ad2262ba5f15,
-        type: 3}
-      propertyPath: m_Effects.Array.data[0]
-      value: 
-      objectReference: {fileID: 11400000, guid: f5dacc0c6d9d9c64c9f4d340d0610af8,
-        type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

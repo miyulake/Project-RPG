@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   resourceTarget: 0
   effectName: Regen
+  effectColor: <color=orange>
   duration: 0
   baseAmountPerTick: 1
   intervalSeconds: 1

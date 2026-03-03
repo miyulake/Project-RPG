@@ -24,7 +24,7 @@ public class Entity : EntityBase
         switch (type)
         {
             case ResourceType.HEALTH:
-                if (delta < 0) ModifyResource(ResourceType.POISE, -4);
+                if (delta < 0) ModifyResourceCurrent(ResourceType.POISE, -5);
                 if (IsResourceDepleted(type))
                 {
                     m_Animator.Play("Death", 0, 0);
@@ -45,7 +45,7 @@ public class Entity : EntityBase
                 if (IsResourceDepleted(type))
                 {
                     m_Animator.Play("Stagger", 0, 0);
-                    SetResource(ResourceType.POISE, max);
+                    SetResourceCurrent(ResourceType.POISE, max);
                 }
                 break;
         }
@@ -54,14 +54,18 @@ public class Entity : EntityBase
     private void Update()
     {
         // Debug
-        if (Input.GetKeyDown(KeyCode.F1)) ModifyResource(ResourceType.HEALTH, -10);
-        if (Input.GetKeyDown(KeyCode.F2)) ModifyResource(ResourceType.STAMINA, -5);
-        if (Input.GetKeyDown(KeyCode.F3)) ModifyResource(ResourceType.MAGIC, -3);
+        if (Input.GetKeyDown(KeyCode.F1)) ModifyResourceCurrent(ResourceType.HEALTH, -10);
+        if (Input.GetKeyDown(KeyCode.F2)) ModifyResourceCurrent(ResourceType.STAMINA, -5);
+        if (Input.GetKeyDown(KeyCode.F3)) ModifyResourceCurrent(ResourceType.MAGIC, -3);
         if (Input.GetKeyDown(KeyCode.F4))
         {
             isWandering = !isWandering;
             m_Animator.SetBool("Wander", isWandering);
         }
+        if (Input.GetKeyDown(KeyCode.F5)) SetResourceMax(ResourceType.HEALTH, GetResource(ResourceType.HEALTH).Max + 10);
+        if (Input.GetKeyDown(KeyCode.F6)) EffectRunner.AddEffect("Poison");
+        if (Input.GetKeyDown(KeyCode.F7)) EffectRunner.ClearEffects();
+        if (Input.GetKeyDown(KeyCode.F12)) InitializeResources();
     }
 
     private void UpdateUI()
