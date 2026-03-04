@@ -11,6 +11,8 @@ public class Hitbox : MonoBehaviour
     {
         if (!col.TryGetComponent<EntityBase>(out var entity)) return;
 
+        entity.Resources.EffectRunner.AddEffect(m_EffectType);
+
         entity.Resources.ModifyResourceCurrent(m_TargetResource, m_Amount);
     }
 }

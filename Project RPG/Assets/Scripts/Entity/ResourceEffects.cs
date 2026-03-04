@@ -5,12 +5,11 @@ using UnityEngine;
 [RequireComponent(typeof(EntityResourcesBase))]
 public class ResourceEffects : MonoBehaviour
 {
-    public List<ResourceEffectSO> possibleEffects = new();
+    public List<ResourceEffect> possibleEffects = new();
 
-    [SerializeField] private List<ResourceEffectSO> m_InitialEffects = new();
+    [SerializeField] private List<ResourceEffect> m_InitialEffects = new();
 
-    private readonly List<ResourceModifier> _ActiveEffects = new();
-    private readonly HashSet<string> _ActiveEffectNames = new();
+    private readonly Dictionary<EffectType, ResourceModifier> _ActiveEffects = new();
     private EntityResourcesBase m_EntityResources;
 
     private void Start()
@@ -21,28 +20,26 @@ public class ResourceEffects : MonoBehaviour
 
     private void Update()
     {
-        var deltaTime = Time.deltaTime;
-        for (int i = _ActiveEffects.Count - 1; i >= 0; i--)
+        var keys = new List<EffectType>(_ActiveEffects.Keys);
+        for (int i = 0; i < keys.Count; i++)
         {
-            _ActiveEffects[i].Tick(deltaTime);
-
-            if (_ActiveEffects[i].IsFinished)
-            {
-                _ActiveEffectNames.Remove(_ActiveEffects[i].Definition.name);
-                _ActiveEffects.RemoveAt(i);
-            }
+            var modifier = _ActiveEffects[keys[i]];
+            modifier.Tick(Time.deltaTime);
+            if (modifier.IsFinished) RemoveEffect(keys[i]);
         }
     }
 
-    public void ApplyEffect(ResourceEffectSO effect)
+    public void ApplyEffect(ResourceEffect effect)
     {
-        if (_ActiveEffectNames.Contains(effect.name)) return;
+        if (_ActiveEffects.TryGetValue(effect.effectType, out var existing))
+        {
+            if (existing.Definition.effectMode == ResourceEffectMode.REFRESH) existing.Refresh();
+            return;
+        }
 
         var resource = m_EntityResources.GetResource(effect.resourceTarget);
         var modifier = new ResourceModifier(effect, resource);
-
-        _ActiveEffectNames.Add(effect.name);
-        _ActiveEffects.Add(modifier);
+        _ActiveEffects.Add(effect.effectType, modifier);
     }
 
     public void AddEffect(EffectType type)
@@ -58,26 +55,24 @@ public class ResourceEffects : MonoBehaviour
 
     public void RemoveEffect(EffectType type)
     {
-        for (int i = _ActiveEffects.Count - 1; i >= 0; i--)
+        if (_ActiveEffects.TryGetValue(type, out var modifier))
         {
-            if (_ActiveEffects[i].Definition.effectType == type)
-            {
-                _ActiveEffectNames.Remove(_ActiveEffects[i].Definition.name);
-                _ActiveEffects.RemoveAt(i);
-            }
+            modifier.Finish();
+            _ActiveEffects.Remove(type);
         }
     }
 
     public void ClearEffects()
     {
-        for (int i = _ActiveEffects.Count - 1; i >= 0; i--) _ActiveEffects[i].Finish();
+        foreach (var modifier in _ActiveEffects.Values) modifier.Finish();
+        _ActiveEffects.Clear();
     }
 
     // DEBUG
     public List<string> GetCurrentEffectNames()
     {
         var names = new List<string>();
-        for (int i = 0; i < _ActiveEffects.Count; i++) names.Add(_ActiveEffects[i].Definition.name);
+        foreach (var modifier in _ActiveEffects.Values) names.Add(modifier.Definition.name);
         return names;
     }
 }
