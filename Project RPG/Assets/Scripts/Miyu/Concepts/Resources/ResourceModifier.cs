@@ -11,7 +11,9 @@ namespace Miyu.Concepts.Resources
         private readonly Timer _DurationTimer;
 
         public ResourceEffectSO Definition => _Definition;
-        public bool IsFinished => _DurationTimer != null && _DurationTimer.IsFinished;
+        public bool IsFinished => (_DurationTimer != null && _DurationTimer.IsFinished) || m_IsManuallyFinished;
+
+        private bool m_IsManuallyFinished = false;
 
         public ResourceModifier(ResourceEffectSO definition, IResource resource)
         {
@@ -41,5 +43,7 @@ namespace Miyu.Concepts.Resources
 
             _IntervalTimer.Tick(deltaTime);
         }
+
+        public void Finish() => m_IsManuallyFinished = true;
     }
 }

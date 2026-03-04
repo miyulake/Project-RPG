@@ -12,10 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c7082f962d033843a9ff81e0f899aa5, type: 3}
   m_Name: EFF_Poison
   m_EditorClassIdentifier: 
+  effectType: 2
   resourceTarget: 0
-  effectName: Poison
-  effectColor: <color=blue>
   duration: 0
   baseAmountPerTick: -10
   intervalSeconds: 3
-  tickImmediately: 0
+  tickImmediately: 1

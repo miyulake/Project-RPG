@@ -246,8 +246,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 580157384031699000}
+  - component: {fileID: 8696493050024663822}
   - component: {fileID: 8490147923400339146}
   - component: {fileID: 2427247914080479001}
+  - component: {fileID: 7240652766612755132}
+  - component: {fileID: 8814555286491779755}
   - component: {fileID: 850346803721368571}
   m_Layer: 0
   m_Name: Test Entity
@@ -273,6 +276,19 @@ Transform:
   - {fileID: 2341019547691678655}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8696493050024663822
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5312063128084975092}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 634d15a96ed3d7b499f5dd78e6efa912, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EntityType: 2
 --- !u!114 &8490147923400339146
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -285,7 +301,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2aea6bc4235f6114d9c37cd4293df7b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_EntityType: 2
   m_ResourceSetup:
   - resourceType: 0
     maxValue: 100
@@ -295,9 +310,7 @@ MonoBehaviour:
     maxValue: 12
   - resourceType: 3
     maxValue: 10
-  m_Animator: {fileID: 850346803721368571}
-  m_ResourceUI: {fileID: 6406210450096438451}
-  m_EffectsUI: {fileID: 2361837324890583736}
+  m_PoiseFillDelay: 5
 --- !u!114 &2427247914080479001
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -315,6 +328,33 @@ MonoBehaviour:
   m_InitialEffects:
   - {fileID: 11400000, guid: f5dacc0c6d9d9c64c9f4d340d0610af8, type: 2}
   - {fileID: 11400000, guid: 8ffcbd3069ac82e4d966387ec05b9cee, type: 2}
+--- !u!114 &7240652766612755132
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5312063128084975092}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a5c35d99c5717dc41894094590907d47, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ResourceUI: {fileID: 6406210450096438451}
+  m_EffectsUI: {fileID: 2361837324890583736}
+--- !u!114 &8814555286491779755
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5312063128084975092}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5f39f1643da8bd46963bdcb5bf4e0f4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Animator: {fileID: 850346803721368571}
 --- !u!95 &850346803721368571
 Animator:
   serializedVersion: 5

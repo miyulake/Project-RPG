@@ -88,11 +88,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _active: 1
   _shader: {fileID: 4800000, guid: 2bf2830f83506eb4097cdebfd30a7bb8, type: 3}
+  _material: {fileID: 0}
+  _isActive: 0
   _scaleLerp:
-    serializedVersion: 2
     m_Curve:
-    - serializedVersion: 3
-      time: 0
+    - time: 0
       value: 0.0049
       inSlope: 0.0508
       outSlope: 0.0508
@@ -100,8 +100,7 @@ MonoBehaviour:
       weightedMode: 3
       inWeight: 0
       outWeight: 0.742
-    - serializedVersion: 3
-      time: 1
+    - time: 1
       value: 0.5095
       inSlope: 3.6093
       outSlope: 3.6093
@@ -119,6 +118,9 @@ MonoBehaviour:
   _palette:
     enabled: 0
     value: {fileID: 0}
+  _paletteLast: 0
+  _crispLast: 0
+  _firstRun: 0
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -138,10 +140,9 @@ MonoBehaviour:
   m_RendererFeatures:
   - {fileID: -1878332245247344467}
   - {fileID: -4271555565316789218}
-  - {fileID: -6004158419155191357}
   - {fileID: 4189251104429051217}
   - {fileID: 4770203813344979489}
-  m_RendererFeatureMap: adc0de57c6d2eee51e2cf352d862b8c4c37915abbaf1acac510d6812af35233a212aa438182b3342
+  m_RendererFeatureMap: adc0de57c6d2eee51e2cf352d862b8c4510d6812af35233a212aa438182b3342
   m_UseNativeRenderPass: 0
   postProcessData: {fileID: 11400000, guid: 41439944d30ece34e96484bdb6645b55, type: 2}
   xrSystemData: {fileID: 11400000, guid: 60e1133243b97e347b653163a8c01b64, type: 2}

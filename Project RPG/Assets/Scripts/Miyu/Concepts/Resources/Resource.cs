@@ -53,5 +53,11 @@ namespace Miyu.Concepts.Resources
             Current = Mathf.Clamp(Current, 0, Max);
             Changed?.Invoke(Current, Max, 0);
         }
+
+        public void Fill()
+        {
+            Current = Max;
+            Changed?.Invoke(Current, Max, 0);
+        }
     }
 }

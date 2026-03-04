@@ -12,7 +12,7 @@ namespace Miyu.Tools
         private float m_Yaw;
         private float m_Pitch;
 
-        private Vector3 m_OriginalPosition => gameObject.transform.position;
+        private Vector3 OriginalPosition => gameObject.transform.position;
 
         private void Update()
         {
@@ -61,7 +61,7 @@ namespace Miyu.Tools
         {
             m_Yaw = 0f;
             m_Pitch = 0f;
-            transform.SetPositionAndRotation(m_OriginalPosition, Quaternion.identity);
+            transform.SetPositionAndRotation(OriginalPosition, Quaternion.identity);
         }
     }
 }

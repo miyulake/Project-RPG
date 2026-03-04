@@ -1,5 +1,30 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-8485394609705979491
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ccf1aba9553839d41ae37dd52e9ebcce, type: 3}
+  m_Name: MotionBlur
+  m_EditorClassIdentifier: 
+  active: 1
+  mode:
+    m_OverrideState: 0
+    m_Value: 0
+  quality:
+    m_OverrideState: 0
+    m_Value: 0
+  intensity:
+    m_OverrideState: 1
+    m_Value: 0.5
+  clamp:
+    m_OverrideState: 1
+    m_Value: 0.05
 --- !u!114 &-7893295128165547882
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -115,7 +140,7 @@ MonoBehaviour:
     m_Value: 0.1
   m_Scale:
     m_OverrideState: 1
-    m_Value: 1
+    m_Value: 0.9
   m_Pixelate:
     m_OverrideState: 0
     m_Value: 1
@@ -143,7 +168,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bbb2952b95454955ba507c3d96778a76, type: 3}
   m_Name: VhsVol
   m_EditorClassIdentifier: 
-  active: 0
+  active: 1
   _weight:
     m_OverrideState: 1
     m_Value: 0.25
@@ -165,38 +190,6 @@ MonoBehaviour:
   _glitch:
     m_OverrideState: 0
     m_Value: {r: 1, g: 0, b: 0, a: 1}
---- !u!114 &-3614465193119216533
-MonoBehaviour:
-  m_ObjectHideFlags: 3
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c4ad92b2d4441c34c8fc9eb5b2e51fd2, type: 3}
-  m_Name: PixelationVol
-  m_EditorClassIdentifier: 
-  active: 1
-  m_Scale:
-    m_OverrideState: 1
-    m_Value: 0.95
-  m_Grid:
-    m_OverrideState: 0
-    m_Value: 1
-  m_Roundness:
-    m_OverrideState: 0
-    m_Value: 1
-  m_Color:
-    m_OverrideState: 0
-    m_Value: {r: 0, g: 0, b: 0, a: 0}
-    hdr: 0
-  m_Palette:
-    m_OverrideState: 0
-    m_Value: {fileID: 0}
-  m_Impact:
-    m_OverrideState: 0
-    m_Value: 0
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -215,7 +208,7 @@ MonoBehaviour:
   - {fileID: 695925195512175895}
   - {fileID: -6389671476251771058}
   - {fileID: 600981983660359342}
-  - {fileID: -3614465193119216533}
+  - {fileID: -8485394609705979491}
   - {fileID: -4048396949440609320}
   - {fileID: -3871053971987911856}
 --- !u!114 &600981983660359342

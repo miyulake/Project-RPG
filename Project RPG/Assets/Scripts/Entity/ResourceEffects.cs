@@ -1,9 +1,9 @@
-using UnityEngine;
-using System.Collections.Generic;
 using Miyu.Concepts.Resources;
+using System.Collections.Generic;
+using UnityEngine;
 
-[RequireComponent(typeof(EntityBase))]
-public class ResourceEffectRunner : MonoBehaviour
+[RequireComponent(typeof(EntityResourcesBase))]
+public class ResourceEffects : MonoBehaviour
 {
     public List<ResourceEffectSO> possibleEffects = new();
 
@@ -11,11 +11,11 @@ public class ResourceEffectRunner : MonoBehaviour
 
     private readonly List<ResourceModifier> _ActiveEffects = new();
     private readonly HashSet<string> _ActiveEffectNames = new();
-    private EntityBase m_Entity;
+    private EntityResourcesBase m_EntityResources;
 
     private void Start()
     {
-        m_Entity = GetComponent<EntityBase>();
+        m_EntityResources = GetComponent<EntityResourcesBase>();
         for (int i = 0; i < m_InitialEffects.Count; i++) ApplyEffect(m_InitialEffects[i]);
     }
 
@@ -28,7 +28,7 @@ public class ResourceEffectRunner : MonoBehaviour
 
             if (_ActiveEffects[i].IsFinished)
             {
-                _ActiveEffectNames.Remove(_ActiveEffects[i].Definition.effectName);
+                _ActiveEffectNames.Remove(_ActiveEffects[i].Definition.name);
                 _ActiveEffects.RemoveAt(i);
             }
         }
@@ -36,49 +36,48 @@ public class ResourceEffectRunner : MonoBehaviour
 
     public void ApplyEffect(ResourceEffectSO effect)
     {
-        if (_ActiveEffectNames.Contains(effect.effectName)) return;
+        if (_ActiveEffectNames.Contains(effect.name)) return;
 
-        var resource = m_Entity.GetResource(effect.resourceTarget);
+        var resource = m_EntityResources.GetResource(effect.resourceTarget);
         var modifier = new ResourceModifier(effect, resource);
 
+        _ActiveEffectNames.Add(effect.name);
         _ActiveEffects.Add(modifier);
-        _ActiveEffectNames.Add(effect.effectName);
     }
 
-    public void AddEffect(string effectName)
+    public void AddEffect(EffectType type)
     {
-        var effect = possibleEffects.Find(effectSO => effectSO.effectName == effectName);
+        var effect = possibleEffects.Find(effectSO => effectSO.effectType == type);
         if (effect == null)
         {
-            Debug.LogError($"Effect '{effectName}' not found in possible effects.");
+            Debug.LogError($"Effect '{type}' not found in possible effects of {gameObject.name}");
             return;
         }
         ApplyEffect(effect);
     }
 
-    public void RemoveEffect(string effectName)
+    public void RemoveEffect(EffectType type)
     {
         for (int i = _ActiveEffects.Count - 1; i >= 0; i--)
         {
-            if (_ActiveEffects[i].Definition.effectName == effectName)
+            if (_ActiveEffects[i].Definition.effectType == type)
             {
+                _ActiveEffectNames.Remove(_ActiveEffects[i].Definition.name);
                 _ActiveEffects.RemoveAt(i);
-                _ActiveEffectNames.Remove(effectName);
             }
         }
     }
 
     public void ClearEffects()
     {
-        _ActiveEffects.Clear();
-        _ActiveEffectNames.Clear();
+        for (int i = _ActiveEffects.Count - 1; i >= 0; i--) _ActiveEffects[i].Finish();
     }
 
     // DEBUG
     public List<string> GetCurrentEffectNames()
     {
         var names = new List<string>();
-        for (int i = 0; i < _ActiveEffects.Count; i++) names.Add(_ActiveEffects[i].Definition.effectName);
+        for (int i = 0; i < _ActiveEffects.Count; i++) names.Add(_ActiveEffects[i].Definition.name);
         return names;
     }
 }
