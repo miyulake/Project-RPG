@@ -8,7 +8,8 @@ namespace Miyu.Tools
         private float m_Elapsed;
 
         public bool IsFinished => m_Elapsed >= m_Duration;
-        public float Remaining => m_Duration - m_Elapsed;
+        public bool IsRunning => m_Elapsed > 0f && !IsFinished;
+        public float Remaining => Math.Max(0f, m_Duration - m_Elapsed);
         public float Progress => Math.Clamp(m_Elapsed / m_Duration, 0f, 1f);
 
         public event Action OnCompleted;
@@ -26,7 +27,7 @@ namespace Miyu.Tools
 
         public Timer(float duration, bool loop = false)
         {
-            m_Duration = duration;
+            Duration = duration;
             m_Elapsed = 0f;
             Loop = loop;
         }
