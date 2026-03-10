@@ -1,5 +1,4 @@
 using UnityEngine;
-using System.Collections;
 
 namespace Miyu.Samples
 {
@@ -60,7 +59,7 @@ namespace Miyu.Samples
             transform.position += speed * Time.unscaledDeltaTime * transform.TransformDirection(input.normalized);
         }
 
-        private IEnumerator StepFrame()
+        private System.Collections.IEnumerator StepFrame()
         {
             Time.timeScale = 1;
             yield return null;

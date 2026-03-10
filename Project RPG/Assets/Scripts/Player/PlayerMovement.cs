@@ -11,24 +11,28 @@ namespace Game.Player.Movement
 
         [Header("Attributes")]
         [SerializeField] private float m_LookSensitivity = 5;
+        [SerializeField] private float m_LookSmoothTime = 0.1f;
         [SerializeField] private float m_YawLookDuration;
         [SerializeField] private float m_LookingUpAmount;
         [SerializeField] private float m_LookingDownAmount;
 
-        [SerializeField] private float m_WalkSpeed = 5;
-        [SerializeField] private float m_RunSpeed = 8;
-        [SerializeField] private float m_Gravity = -9.81f; // Something wrong with this
+        [SerializeField] private float m_WalkSpeed = 5f;
+        [SerializeField] private float m_RunSpeed = 8f;
+        [SerializeField] private float m_Gravity = -9.81f;
 
         [Header("Ground")]
+        [SerializeField] private LayerMask m_GroundCastLayers;
         [SerializeField] private float m_ExtraDistance = 0.1f;
         [SerializeField] private bool m_IsGrounded;
 
-        private float m_CurrentSpeed;
-        private float m_YawRotation;
-        private float m_YawVelocity;
         private Vector3 m_Velocity;
+        private float m_CurrentSpeed;
+        private float m_BodyTargetYaw;
+        private float m_BodyYawVelocity;
+        private float m_HeadYawRotation;
+        private float m_HeadYawVelocity;
 
-        void Start()
+        private void Start()
         {
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
@@ -36,24 +40,22 @@ namespace Game.Player.Movement
 
         private void Update()
         {
-            m_IsGrounded = IsOnGround();
+            m_IsGrounded   = IsOnGround(out Ray _, out float _, out float _);
             m_CurrentSpeed = GetSpeed();
 
             m_CharacterController.Move(GetMovement(Time.deltaTime));
             transform.localRotation = GetBodyRotation(Time.deltaTime);
-            m_Camera.localRotation = GetHeadRotation(Time.deltaTime);
+            m_Camera.localRotation  = GetHeadRotation(Time.deltaTime);
         }
 
         private bool IsOnGround(out Ray ray, out float radius, out float maxDistance)
         {
-            ray = new Ray(transform.position + Vector3.up * (m_CharacterController.radius * 3), -transform.up);
+            ray = new(transform.position + Vector3.up * (m_CharacterController.radius * 3), -transform.up);
             radius = m_CharacterController.radius;
             maxDistance = m_CharacterController.radius * 2 + m_CharacterController.skinWidth + m_ExtraDistance;
 
-            return Physics.SphereCast(ray, radius, maxDistance);
+            return Physics.SphereCast(ray, radius, maxDistance, m_GroundCastLayers, QueryTriggerInteraction.Ignore);
         }
-
-        private bool IsOnGround() => IsOnGround(out Ray _, out float _, out float _);
 
         private Vector3 GetMovement(float deltaTime)
         {
@@ -68,17 +70,16 @@ namespace Game.Player.Movement
             return finalMovement;
         }
 
-        /// <returns>The desired body rotation, based on tank controls.</returns>
         private Quaternion GetBodyRotation(float deltaTime)
         {
-            var currentEulers = transform.localEulerAngles;
-            if (Input.GetKey(KeyCode.E)) currentEulers.y += m_LookSensitivity * deltaTime;
-            if (Input.GetKey(KeyCode.Q)) currentEulers.y -= m_LookSensitivity * deltaTime;
+            if (Input.GetKey(KeyCode.E)) m_BodyTargetYaw += m_LookSensitivity;
+            if (Input.GetKey(KeyCode.Q)) m_BodyTargetYaw -= m_LookSensitivity;
 
-            return Quaternion.Euler(currentEulers);
+            var currentYaw = transform.localEulerAngles.y;
+            var smoothYaw = Mathf.SmoothDampAngle(currentYaw, m_BodyTargetYaw, ref m_BodyYawVelocity, m_LookSmoothTime, Mathf.Infinity, deltaTime);
+            return Quaternion.Euler(transform.localEulerAngles.x, smoothYaw, transform.localEulerAngles.z);
         }
 
-        /// <returns>The head rotation, player input.</returns>
         private Quaternion GetHeadRotation(float deltaTime)
         {
             var currentEulers = m_Camera.localEulerAngles;
@@ -86,9 +87,9 @@ namespace Game.Player.Movement
 
             if (Input.GetKey(KeyCode.R)) targetYaw += m_LookingUpAmount;
             if (Input.GetKey(KeyCode.F)) targetYaw += m_LookingDownAmount;
-            m_YawRotation = Mathf.SmoothDamp(m_YawRotation, targetYaw, ref m_YawVelocity, m_YawLookDuration, Mathf.Infinity, deltaTime);
+            m_HeadYawRotation = Mathf.SmoothDamp(m_HeadYawRotation, targetYaw, ref m_HeadYawVelocity, m_YawLookDuration, Mathf.Infinity, deltaTime);
 
-            return Quaternion.Euler(m_YawRotation, currentEulers.y, currentEulers.z);
+            return Quaternion.Euler(m_HeadYawRotation, currentEulers.y, currentEulers.z);
         }
 
         private float GetSpeed() => Input.GetKey(KeyCode.LeftShift) ? m_RunSpeed : m_WalkSpeed;
