@@ -8,14 +8,14 @@ TagManager:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Brick
   - Water
   - UI
-  - 
-  - 
-  - 
-  - 
-  - 
+  - Wood
+  - Grass
+  - Lava
+  - Stone
+  - Flesh
   - 
   - 
   - 

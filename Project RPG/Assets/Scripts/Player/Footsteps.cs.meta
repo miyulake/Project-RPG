@@ -1,12 +1,11 @@
 fileFormatVersion: 2
-guid: e605aab55adc63c478a13729d477f6f2
+guid: 342a5967a287b8e47bccc04d1d1de10e
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
   defaultReferences:
-  - m_Attributes: {fileID: 11400000, guid: 7ee2938fec4f9b944b4f10a7b7da2c87, type: 2}
-  - m_CharacterController: {instanceID: 0}
-  - m_Camera: {instanceID: 0}
+  - m_Database: {fileID: 11400000, guid: 396a3d9595901ac4c907cfcad095230d, type: 2}
+  - m_Audio: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

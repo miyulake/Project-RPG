@@ -6,14 +6,14 @@ namespace Miyu.Samples
     public class ShakeObject : MonoBehaviour
     {
         [SerializeField] private Transform m_Visual;
-        [SerializeField] private float m_Magnitude = 0.25f;
-        [SerializeField] private float m_Duration = 1f;
-        [SerializeField] private float m_DecaySpeed = 3f;
+        [Min(0), SerializeField] private float m_Magnitude = 0.25f;
+        [Min(0), SerializeField] private float m_Duration = 1f;
+        [Min(0), SerializeField] private float m_DecaySpeed = 3f;
         private ObjectShake m_Shake;
         private Vector3 m_BasePosition;
         private Vector3 m_AnchorPosition;
 
-        private void Awake()
+        private void Start()
         {
             if (!m_Visual) m_Visual = transform;
 

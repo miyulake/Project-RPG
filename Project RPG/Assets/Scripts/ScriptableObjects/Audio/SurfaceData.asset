@@ -1,0 +1,47 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 985af31cebed5bf46bbe83cc4fe463b9, type: 3}
+  m_Name: SurfaceData
+  m_EditorClassIdentifier: 
+  surfaces:
+  - surface: 0
+    hitAudio: []
+    stepAudio:
+    - {fileID: 8300000, guid: 3eb7729b7cc1d404c8ab06d22592805b, type: 3}
+  - surface: 1
+    hitAudio: []
+    stepAudio:
+    - {fileID: 8300000, guid: 537413b8e8fab5442a9487f72510e7a4, type: 3}
+  - surface: 2
+    hitAudio: []
+    stepAudio:
+    - {fileID: 8300000, guid: 537413b8e8fab5442a9487f72510e7a4, type: 3}
+  - surface: 3
+    hitAudio: []
+    stepAudio:
+    - {fileID: 8300000, guid: 8893ff2e291464c4ca498baa16a6cb91, type: 3}
+  - surface: 4
+    hitAudio: []
+    stepAudio:
+    - {fileID: 8300000, guid: 537413b8e8fab5442a9487f72510e7a4, type: 3}
+  - surface: 5
+    hitAudio: []
+    stepAudio:
+    - {fileID: 8300000, guid: 537413b8e8fab5442a9487f72510e7a4, type: 3}
+  - surface: 6
+    hitAudio: []
+    stepAudio:
+    - {fileID: 8300000, guid: 537413b8e8fab5442a9487f72510e7a4, type: 3}
+  - surface: 7
+    hitAudio: []
+    stepAudio:
+    - {fileID: 8300000, guid: 375415b59a5f5424b83219af8bd12711, type: 3}

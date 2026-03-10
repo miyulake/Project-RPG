@@ -5,10 +5,10 @@ namespace Miyu.Samples
 {
     public class ShakeCamera : MonoBehaviour
     {
-        [SerializeField] float m_Magnitude = 0.15f;
-        [SerializeField] float m_Duration = 1f;
-        [SerializeField] float m_Frequency = 25f;
-        [SerializeField] float m_DecaySpeed = 3f;
+        [Min(0), SerializeField] float m_Magnitude = 0.15f;
+        [Min(0), SerializeField] float m_Duration = 1f;
+        [Min(0), SerializeField] float m_Frequency = 25f;
+        [Min(0), SerializeField] float m_DecaySpeed = 3f;
         private CameraShake m_Shake;
         private Vector3 m_StartPosition;
 
