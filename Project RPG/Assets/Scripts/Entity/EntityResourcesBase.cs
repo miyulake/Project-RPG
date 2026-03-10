@@ -9,11 +9,13 @@ public abstract class EntityResourcesBase : MonoBehaviour
 
     public ResourceEffects EffectRunner { get; private set; }
     public event System.Action<ResourceType, int, int, int> OnResourceChanged;
-    public event System.Action OnDeath;
+    public event System.Action<int> OnDamaged;
     public event System.Action OnStagger;
+    public event System.Action OnDeath;
 
-    protected void RaiseDeath() => OnDeath?.Invoke();
+    protected void RaiseDamage(int damage) => OnDamaged?.Invoke(damage);
     protected void RaiseStagger() => OnStagger?.Invoke();
+    protected void RaiseDeath() => OnDeath?.Invoke();
 
     protected Dictionary<ResourceType, Resource> Resources = new();
 

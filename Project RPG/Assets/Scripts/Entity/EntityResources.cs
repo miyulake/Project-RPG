@@ -24,6 +24,7 @@ public class EntityResources : EntityResourcesBase
             case ResourceType.HEALTH:
                 if (delta < 0)
                 {
+                    RaiseDamage(delta);
                     ModifyResourceCurrent(ResourceType.POISE, -5);
                     m_PoiseFillTimer.Reset();
                 }
@@ -67,6 +68,7 @@ public class EntityResources : EntityResourcesBase
         if (Input.GetKeyDown(KeyCode.F6)) EffectRunner.AddEffect(EffectType.POISON);
         if (Input.GetKeyDown(KeyCode.F7)) EffectRunner.ClearEffects();
 
+        if (Input.GetKeyDown(KeyCode.F11)) ModifyResourceCurrent(ResourceType.HEALTH, -100);
         if (Input.GetKeyDown(KeyCode.F12)) InitializeResources();
     }
 }
