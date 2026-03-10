@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Miyu.Tools
+namespace Miyu.Samples
 {
     public class Mover : MonoBehaviour
     {

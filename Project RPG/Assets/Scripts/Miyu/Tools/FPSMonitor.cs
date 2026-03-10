@@ -4,7 +4,7 @@ namespace Miyu.Tools
 {
     public sealed class FPSMonitor
     {
-        private readonly float m_UpdateInterval;
+        private readonly float _UpdateInterval;
 
         private float m_AccumulatedTime;
         private int m_FrameCount;
@@ -18,7 +18,7 @@ namespace Miyu.Tools
             if (updateInterval <= 0f)
                 throw new ArgumentOutOfRangeException(nameof(updateInterval));
 
-            m_UpdateInterval = updateInterval;
+            _UpdateInterval = updateInterval;
         }
 
         public void Tick(float deltaTime)
@@ -26,7 +26,7 @@ namespace Miyu.Tools
             m_AccumulatedTime += deltaTime;
             m_FrameCount++;
 
-            if (m_AccumulatedTime >= m_UpdateInterval)
+            if (m_AccumulatedTime >= _UpdateInterval)
             {
                 AverageFPS = m_FrameCount / m_AccumulatedTime;
 

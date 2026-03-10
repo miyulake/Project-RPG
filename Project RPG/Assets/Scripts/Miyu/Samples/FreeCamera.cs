@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections;
 
-namespace Miyu.Tools
+namespace Miyu.Samples
 {
     public class FreeCamera : MonoBehaviour
     {

@@ -67,10 +67,10 @@ namespace Miyu.Tools
     {
         private Vector3 m_TargetOffset;
         private float m_Timer;
-        private readonly float m_Frequency;
+        private readonly float _Frequency;
 
         public CameraShake(Vector3 startPosition, float frequency = 25f) : base(startPosition) 
-            => m_Frequency = Mathf.Max(0.01f, frequency);
+            => _Frequency = Mathf.Max(0.01f, frequency);
 
         public override void StartShake(float magnitude, float duration, float decaySpeed = 5f)
         {
@@ -93,14 +93,14 @@ namespace Miyu.Tools
             var currentMagnitude = m_Magnitude * decayFactor;
 
             m_Timer += deltaTime;
-            var interval = 1f / m_Frequency;
+            var interval = 1f / _Frequency;
             if (m_Timer >= interval)
             {
                 m_Timer -= interval;
                 m_TargetOffset = Random.insideUnitSphere * currentMagnitude;
             }
 
-            var smoothFactor = m_Frequency * 2f * deltaTime;
+            var smoothFactor = _Frequency * 2f * deltaTime;
             m_CurrentOffset = Vector3.Lerp(m_CurrentOffset, m_TargetOffset, smoothFactor);
 
             return m_CurrentOffset;

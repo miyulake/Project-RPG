@@ -4,20 +4,20 @@ namespace Miyu.Tools
 {
     public sealed class Buffer
     {
-        private readonly float m_BufferTime;
+        private readonly float _BufferTime;
         private float m_TimeRemaining;
 
         public bool IsBuffered => m_TimeRemaining > 0f;
         public float TimeRemaining => m_TimeRemaining;
-        public float Progress => 1f - (m_TimeRemaining / m_BufferTime);
+        public float Progress => 1f - (m_TimeRemaining / _BufferTime);
 
         public Buffer(float bufferTime)
         {
             if (bufferTime <= 0f) throw new ArgumentOutOfRangeException(nameof(bufferTime), "Buffer time must be > 0");
-            m_BufferTime = bufferTime;
+            _BufferTime = bufferTime;
         }
 
-        public void BufferInput() => m_TimeRemaining = m_BufferTime;
+        public void BufferInput() => m_TimeRemaining = _BufferTime;
 
         public void Tick(float deltaTime)
         {
