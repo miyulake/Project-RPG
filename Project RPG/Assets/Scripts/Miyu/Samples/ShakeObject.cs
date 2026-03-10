@@ -11,7 +11,7 @@ namespace Miyu.Samples
             Debug.LogWarningFormat(
                 this,
                 "{0} requires the Legacy Input Manager and will not function.",
-                nameof(ShakeCamera));
+                nameof(ShakeObject));
             enabled = false;
         }
 #endif
