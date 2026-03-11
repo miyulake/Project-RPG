@@ -20,27 +20,24 @@ MonoBehaviour:
   - surface: 1
     hitAudio: []
     stepAudio:
-    - {fileID: 8300000, guid: 537413b8e8fab5442a9487f72510e7a4, type: 3}
+    - {fileID: 8300000, guid: 3eb7729b7cc1d404c8ab06d22592805b, type: 3}
   - surface: 2
     hitAudio: []
-    stepAudio:
-    - {fileID: 8300000, guid: 537413b8e8fab5442a9487f72510e7a4, type: 3}
+    stepAudio: []
   - surface: 3
     hitAudio: []
     stepAudio:
     - {fileID: 8300000, guid: 8893ff2e291464c4ca498baa16a6cb91, type: 3}
   - surface: 4
     hitAudio: []
-    stepAudio:
-    - {fileID: 8300000, guid: 537413b8e8fab5442a9487f72510e7a4, type: 3}
+    stepAudio: []
   - surface: 5
     hitAudio: []
     stepAudio:
     - {fileID: 8300000, guid: 537413b8e8fab5442a9487f72510e7a4, type: 3}
   - surface: 6
     hitAudio: []
-    stepAudio:
-    - {fileID: 8300000, guid: 537413b8e8fab5442a9487f72510e7a4, type: 3}
+    stepAudio: []
   - surface: 7
     hitAudio: []
     stepAudio:

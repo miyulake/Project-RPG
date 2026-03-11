@@ -13,7 +13,7 @@ public class Footsteps : MonoBehaviour
     [SerializeField] private float m_RunTimerMultiplier = 2f;
     [Header("Raycast")]
     [SerializeField] private float m_RaycastDistance = 1.5f;
-    private LayerMask m_GroundMask;
+    [SerializeField] private LayerMask m_GroundMask;
     private Timer m_Timer;
 
     private void Awake()

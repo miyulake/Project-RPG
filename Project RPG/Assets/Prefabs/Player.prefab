@@ -1058,7 +1058,11 @@ MonoBehaviour:
   m_Database: {fileID: 11400000, guid: 396a3d9595901ac4c907cfcad095230d, type: 2}
   m_Audio: {fileID: 5701676137022760464}
   m_DurationBetween: 0.66
+  m_RunTimerMultiplier: 2
   m_RaycastDistance: 1
+  m_GroundMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
 --- !u!114 &4109897584991914939
 MonoBehaviour:
   m_ObjectHideFlags: 0

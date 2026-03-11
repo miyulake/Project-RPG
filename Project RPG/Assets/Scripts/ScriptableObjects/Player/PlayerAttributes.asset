@@ -22,5 +22,5 @@ MonoBehaviour:
   gravity: -30
   groundCastLayers:
     serializedVersion: 2
-    m_Bits: 985
+    m_Bits: 2009
   extraDistance: 0.03
