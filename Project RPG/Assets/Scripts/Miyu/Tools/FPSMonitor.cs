@@ -16,7 +16,7 @@ namespace Miyu.Tools
         public FPSMonitor(float updateInterval = 0.33f)
         {
             if (updateInterval <= 0f)
-                throw new ArgumentOutOfRangeException(nameof(updateInterval));
+                throw new ArgumentOutOfRangeException(nameof(updateInterval), "Update interval must be > 0");
 
             _UpdateInterval = updateInterval;
         }

@@ -1,4 +1,5 @@
 using UnityEngine;
+using Miyu.Tools;
 
 namespace Miyu.Samples
 {
@@ -8,22 +9,19 @@ namespace Miyu.Samples
         [SerializeField] private AnimationCurve m_MoveCurve;
         [SerializeField] private float m_Duration = 1f;
         [SerializeField] private bool m_Loop = true;
+
+        private Tween m_Tween;
         private Vector3 m_OriginalPosition;
-        private float m_CurrentTime = 0f;
 
-        private void Start() => m_OriginalPosition = transform.position;
-
-        private void Update() => Move();
-
-        private void Move()
+        private void Start()
         {
-            m_CurrentTime += Time.deltaTime;
-
-            var time = m_Loop ? 
-                (m_CurrentTime / m_Duration) % 1f : 
-                Mathf.Clamp01(m_CurrentTime / m_Duration);
-            var curveValue = m_MoveCurve.Evaluate(time);
-            transform.position = Vector3.Lerp(m_OriginalPosition, m_TargetPosition, curveValue);
+            m_OriginalPosition = transform.position;
+            m_Tween = new(m_MoveCurve, m_Duration, m_Loop);
+            m_Tween.OnUpdate += value =>
+            { transform.position = Vector3.Lerp(m_OriginalPosition, m_TargetPosition, value); };
+            m_Tween.Play();
         }
+
+        private void Update() => m_Tween.Tick(Time.deltaTime);
     }
 }
