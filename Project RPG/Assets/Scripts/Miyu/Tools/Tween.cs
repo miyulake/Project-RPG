@@ -48,6 +48,8 @@ namespace Miyu.Tools
             m_IsPlaying = true;
         }
 
+        public void Randomize() => m_ElapsedTime = UnityEngine.Random.Range(0, _Duration);
+
         public void Stop() => m_IsPlaying = false;
 
         public void Reset()
